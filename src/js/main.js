@@ -1,3 +1,6 @@
+import CartManager from './modules/CartManager.js';
+import WhatsAppService from './services/WhatsAppService.js';
+
 const menu = document.getElementById("menu");
 const cartBtn = document.getElementById("cart-btn");
 const cartModal = document.getElementById("cart-modal");
@@ -12,13 +15,14 @@ const observationInput = document.getElementById("observation");
 const deliveryOptions = document.getElementsByName("delivery-option");
 const addressContainer = document.getElementById("address-container");
 
-let cart = [];
+const cartManager = new CartManager();
+const whatsAppService = new WhatsAppService();
 
 // abrir Modal do Carrinho
 cartBtn.addEventListener("click", function () {
     updateCartModal();
     cartModal.style.display = "flex";
-    adjustCartModalHeight(); // Ajustar a altura máxima do modal quando ele for exibido
+    adjustCartModalHeight();
 });
 
 // função para fechar modal ao clicar fora
@@ -38,33 +42,17 @@ menu.addEventListener("click", function (event) {
     if (parentButton) {
         const name = parentButton.getAttribute("data-name");
         const price = parseFloat(parentButton.getAttribute("data-price"));
-        // Add Carrinho
-        addToCart(name, price);
+        cartManager.addItem(name, price);
+        updateCartModal();
     }
 });
-
-// função para add carrinho
-function addToCart(name, price) {
-    const existingItem = cart.find(item => item.name == name);
-
-    if (existingItem) {
-        // se o item ja existe, apenas aumenta a quantidade +1
-        existingItem.quantity += 1;
-    } else {
-        cart.push({
-            name,
-            price,
-            quantity: 1,
-        });
-    }
-
-    updateCartModal();
-}
 
 //Atualiza carrinho
 function updateCartModal() {
     cartItemsContainer.innerHTML = "";
-    let total = 0;
+    
+    const cart = cartManager.getCart();
+    const total = cartManager.getTotal();
 
     cart.forEach(item => {
         const cartItemElement = document.createElement("div");
@@ -84,7 +72,6 @@ function updateCartModal() {
 
         </div>
         `;
-        total += item.price * item.quantity;
 
         cartItemsContainer.appendChild(cartItemElement);
     });
@@ -94,33 +81,17 @@ function updateCartModal() {
         currency: "BRL"
     });
 
-    cartCounter.innerHTML = cart.length;
+    cartCounter.innerHTML = cartManager.getTotalItems();
 }
 
 // Função para remover item do carrinho 
 cartItemsContainer.addEventListener("click", function (event) {
     if (event.target.classList.contains("remove-from-cart-btn")) {
         const name = event.target.getAttribute("data-name");
-
-        removeItemCart(name);
-    }
-});
-
-function removeItemCart(name) {
-    const index = cart.findIndex(item => item.name === name);
-
-    if (index !== -1) {
-        const item = cart[index];
-
-        if (item.quantity > 1) {
-            item.quantity -= 1;
-            updateCartModal();
-            return;
-        }
-        cart.splice(index, 1);
+        cartManager.removeItem(name);
         updateCartModal();
     }
-}
+});
 
 addressInput.addEventListener("input", function (event) {
     let inputValue = event.target.value;
@@ -151,9 +122,9 @@ checkoutBtn.addEventListener("click", function () {
             duration: 3000,
             newWindow: true,
             close: true,
-            gravity: "top", // `top` or `bottom`
-            position: "center", // `left`, `center` or `right`
-            stopOnFocus: true, // Prevents dismissing of toast on hover
+            gravity: "top",
+            position: "center",
+            stopOnFocus: true,
             style: {
                 background: "linear-gradient(to right, #7c1c1c, #120504)",
             },
@@ -161,43 +132,32 @@ checkoutBtn.addEventListener("click", function () {
         return;
     }
 
+    const cart = cartManager.getCart();
+    
     if (cart.length === 0) return;
 
-    let message = cart.map(item => ` ${item.name} Quantidade: (${item.quantity}) Preço: R$ ${item.price} |`).join("");
-
-    // Pegar a observação do cliente
+    const deliveryOption = document.querySelector('input[name="delivery-option"]:checked').value;
+    const address = addressInput.value;
     const observation = observationInput.value;
 
-    // Adicionar a observação ao pedido
-    message += `\n\nObservações: ${observation}`;
-
-    if (document.querySelector('input[name="delivery-option"]:checked').value === "delivery") {
-        if (addressInput.value === "") {
-            addressWarn.classList.remove("hidden");
-            addressInput.classList.add("border-red-500");
-            return;
-        }
-        message += `\n\nEndereço: ${addressInput.value}`;
-    } else {
-        message += `\n\nRetirada no local.`;
+    if (deliveryOption === "delivery" && address === "") {
+        addressWarn.classList.remove("hidden");
+        addressInput.classList.add("border-red-500");
+        return;
     }
 
-    const phone = "558399048716";
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    whatsAppService.sendOrder(cart, deliveryOption, address, observation);
 
-    console.log(url); // Verifique se a URL está correta
-    window.open(url, "_blank");
-
-    cart = [];
+    cartManager.clear();
     updateCartModal();
-    observationInput.value = ""; // Limpar campo de observação
+    observationInput.value = "";
 });
 
 // verificar a hora e manipular o card do horario //
 function checkRestalrantOpen() {
     const data = new Date();
     const hora = data.getHours();
-    return hora >= 7 && hora < 17; //true
+    return hora >= 7 && hora < 17;
 }
 
 const spanItem = document.getElementById("date-span");
@@ -217,21 +177,9 @@ function adjustCartModalHeight() {
     const footerHeight = document.querySelector('footer').offsetHeight;
     const cartModal = document.getElementById('cart-modal');
 
-    // Calcular a altura máxima do modal (altura da janela - altura do footer)
     const maxModalHeight = windowHeight - footerHeight;
-
-    // Definir a altura máxima do modal
     cartModal.style.maxHeight = maxModalHeight + 'px';
 }
-
-// Chamar a função quando o modal do carrinho for exibido
-cartBtn.addEventListener("click", function () {
-    updateCartModal();
-    cartModal.style.display = "flex";
-
-    // Ajustar a altura máxima do modal quando ele for exibido
-    adjustCartModalHeight();
-});
 
 const addObservationBtn = document.getElementById('add-observation-btn');
 const observationContainer = document.getElementById('observation-container');
