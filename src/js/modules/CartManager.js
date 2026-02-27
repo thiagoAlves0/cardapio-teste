@@ -2,39 +2,73 @@
 class CartManager {
     constructor() {
         this.key = 'lanchoneteCart';
+        this.lastOrderKey = 'lanchoneteLastOrder';
         this.cart = this.loadFromStorage();
     }
 
     addItem(name, price) {
         const existingItem = this.cart.find(item => item.name === name);
-        
         if (existingItem) {
             existingItem.quantity += 1;
         } else {
             this.cart.push({
                 name,
                 price: parseFloat(price),
-                quantity: 1
+                quantity: 1,
+                note: ""
             });
         }
-        
         this.saveToStorage();
         return this.getCart();
     }
 
     removeItem(name) {
         const index = this.cart.findIndex(item => item.name === name);
-        
         if (index === -1) return this.getCart();
-        
         if (this.cart[index].quantity > 1) {
             this.cart[index].quantity -= 1;
         } else {
             this.cart.splice(index, 1);
         }
-        
         this.saveToStorage();
         return this.getCart();
+    }
+
+    setItemNote(name, note) {
+        const item = this.cart.find(i => i.name === name);
+        if (item) {
+            item.note = note;
+            this.saveToStorage();
+        }
+    }
+
+    // Carrega itens diretamente (usado para repetir pedido)
+    loadCart(items) {
+        this.cart = items.map(item => ({
+            name: item.name,
+            price: parseFloat(item.price),
+            quantity: item.quantity,
+            note: item.note || ""
+        }));
+        this.saveToStorage();
+    }
+
+    // Salva o último pedido finalizado no localStorage
+    saveLastOrder(cart, deliveryOption, address, observation) {
+        const lastOrder = {
+            cart: cart.map(i => ({ ...i })),
+            deliveryOption,
+            address,
+            observation,
+            date: new Date().toISOString()
+        };
+        localStorage.setItem(this.lastOrderKey, JSON.stringify(lastOrder));
+    }
+
+    // Recupera o último pedido salvo
+    getLastOrder() {
+        const data = localStorage.getItem(this.lastOrderKey);
+        return data ? JSON.parse(data) : null;
     }
 
     clear() {
@@ -48,9 +82,7 @@ class CartManager {
     }
 
     getTotal() {
-        return this.cart.reduce((total, item) => {
-            return total + (item.price * item.quantity);
-        }, 0);
+        return this.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
     }
 
     getTotalItems() {

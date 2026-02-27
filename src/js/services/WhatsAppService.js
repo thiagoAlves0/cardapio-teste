@@ -8,26 +8,29 @@ class WhatsAppService {
     formatOrder(cart, deliveryOption, address = "", observation = "") {
         let message = "🛒 *PEDIDO - Lanchonete Central*\n\n";
 
-        // Itens
+        // Itens com observação individual
         cart.forEach(item => {
             const itemTotal = (item.price * item.quantity).toFixed(2);
             message += `• ${item.name} (${item.quantity}x) - R$ ${itemTotal}\n`;
+            if (item.note && item.note.trim()) {
+                message += `  ↳ _${item.note.trim()}_\n`;
+            }
         });
 
         // Total
         const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
         message += `\n💰 *TOTAL: R$ ${total.toFixed(2)}*\n\n`;
 
-        // Entrega/Retirada
+        // Entrega / Retirada
         if (deliveryOption === "delivery") {
             message += `📍 *ENTREGA*\n${address}\n`;
         } else {
             message += `🏪 *RETIRADA NO LOCAL*\n`;
         }
 
-        // Observações
+        // Observação geral
         if (observation.trim()) {
-            message += `\n📝 *OBSERVAÇÕES:*\n${observation}\n`;
+            message += `\n📝 *OBSERVAÇÕES GERAIS:*\n${observation}\n`;
         }
 
         message += `\n_Enviado via Cardápio Digital_`;
