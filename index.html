@@ -18,257 +18,116 @@
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="./src/css/output.css" />
-
-  <style>
-    @keyframes lcFadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes lcSlideUp {
-      from {
-        opacity: 0;
-        transform: translateY(100%);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes lcSpin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes lcPulse {
-
-      0%,
-      100% {
-        opacity: 1;
-        box-shadow: 0 0 6px #4ade80;
-      }
-
-      50% {
-        opacity: .4;
-        box-shadow: 0 0 2px #4ade80;
-      }
-    }
-
-    #cart-items::-webkit-scrollbar {
-      display: none;
-    }
-
-    #cart-items {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-
-    /* Hover dos botões +/− do carrinho (CSP fix — sem onmouseover inline) */
-    .btn-remove-cart:hover { background: rgba(248,113,113,0.25) !important; }
-    .btn-add-cart:hover    { background: rgba(250,204,21,0.25)  !important; }
-
-    /* Observação por item */
-    .toggle-note-btn {
-      background: none;
-      border: none;
-      color: rgba(255,255,255,0.22);
-      font-family: 'DM Sans', sans-serif;
-      font-size: .72rem;
-      cursor: pointer;
-      padding: 0;
-      display: block;
-      transition: color .15s;
-    }
-    .toggle-note-btn:hover { color: rgba(250,204,21,0.65); }
-    .item-note-input {
-      width: 100%;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 8px;
-      padding: 7px 10px;
-      color: rgba(255,255,255,0.75);
-      font-family: 'DM Sans', sans-serif;
-      font-size: .75rem;
-      outline: none;
-      box-sizing: border-box;
-      margin-top: 6px;
-      transition: border-color .15s;
-    }
-    .item-note-input:focus { border-color: rgba(250,204,21,0.4); }
-
-    /* Focus inputs do modal (CSP fix — sem onfocus/onblur inline) */
-    #address:focus, #observation:focus {
-      border-color: rgba(250,204,21,0.5) !important;
-      outline: none;
-    }
-  </style>
+  <link rel="stylesheet" href="./src/css/style.css" />
 
   <title>Lanchonete Central</title>
 </head>
 
 <body>
-  <!-- HEADER -->
-  <header style="background:#0d0d0d;position:relative;overflow:hidden;">
 
-    <!-- Textura de fundo -->
-    <div
-      style="position:absolute;inset:0;background-image:radial-gradient(ellipse at 15% 40%, rgba(250,204,21,0.07) 0%, transparent 55%), radial-gradient(ellipse at 85% 10%, rgba(249,115,22,0.06) 0%, transparent 45%), radial-gradient(ellipse at 50% 100%, rgba(250,204,21,0.04) 0%, transparent 60%);pointer-events:none;">
-    </div>
+  <!-- ══════════════════════════════════════
+       HEADER
+  ══════════════════════════════════════ -->
+  <header class="lc-header">
+    <div class="lc-header__topbar"></div>
 
-    <!-- Linha decorativa topo -->
-    <div style="height:3px;background:linear-gradient(90deg,transparent,#facc15,#f97316,#facc15,transparent);"></div>
-
-    <!-- Área central: logo + identidade -->
-    <div
-      style="display:flex;flex-direction:column;align-items:center;padding:48px 24px 36px;gap:16px;animation:lcFadeUp .6s ease both;">
-
-      <!-- Logo com anel rotativo -->
-      <div style="position:relative;">
-        <div
-          style="position:absolute;inset:-4px;border-radius:9999px;background:conic-gradient(from 0deg,#facc15,#f97316,#facc15,#f97316,#facc15);animation:lcSpin 8s linear infinite;opacity:.8;">
+    <div class="lc-header-content">
+      <div class="lc-header-main">
+        <div class="lc-logo-compact">
+          <img src="assets/LC-LOGO-TESTE.png" alt="Lanchonete Central">
         </div>
-        <div style="position:relative;padding:3px;border-radius:9999px;background:#0d0d0d;">
-          <img src="assets/LC-LOGO-TESTE.png" alt="Lanchonete Central"
-            style="width:100px;height:100px;border-radius:9999px;object-fit:cover;display:block;" />
+
+        <div class="lc-brand-compact">
+          <h1>Lanchonete <em>Central</em></h1>
+
+          <div class="lc-status-simple">
+            <span class="status-dot status-open"></span>
+            <span>Aberto até 23h</span>
+          </div>
         </div>
+
+        <a href="https://instagram.com/thlago.alves" target="_blank" class="lc-dev-link" title="Dev by @thlago.alves">
+          <i class="fas fa-code"></i>
+        </a>
       </div>
 
-      <!-- Nome -->
-      <div style="text-align:center;">
-        <h1
-          style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;color:#fff;line-height:1;margin:0;letter-spacing:-1px;">
-          Lanchonete <span style="color:#facc15;font-style:italic;">Central</span>
-        </h1>
-        <p
-          style="font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:300;letter-spacing:.3em;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-top:10px;">
-          Mais de 20 anos alimentando o bairro com carinho
-        </p>
-      </div>
-
-      <!-- Badge status -->
-      <div id="date-span"
-        style="display:inline-flex;align-items:center;gap:8px;background:rgba(22,163,74,0.15);border:1px solid rgba(22,163,74,0.35);padding:8px 20px;border-radius:9999px;margin-top:4px;">
-        <span
-          style="width:7px;height:7px;border-radius:50%;background:#4ade80;display:inline-block;box-shadow:0 0 8px #4ade80;animation:lcPulse 1.5s ease infinite;"></span>
-        <span style="font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;color:#4ade80;">Aberto
-          agora</span>
-        <span style="width:1px;height:12px;background:rgba(255,255,255,0.15);display:inline-block;"></span>
-        <span style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:rgba(255,255,255,0.4);">Seg–Dom · 7h às
-          17h</span>
+      <div class="lc-info-bar">
+        <a href="#" class="lc-info-link"><i class="fas fa-map-marker-alt"></i> Dr. Francisco Feitosa</a>
+        <span class="sep">•</span>
+        <a href="tel:+5583998775498" class="lc-info-link"><i class="fab fa-whatsapp"></i> (83) 9 9877-5498</a>
+        <span class="sep">•</span>
+        <span class="lc-info-link"><i class="fas fa-wallet"></i> Cartão / Pix / Dinheiro</span>
       </div>
     </div>
-
-    <!-- Divisor -->
-    <div
-      style="height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);margin:0 24px;">
-    </div>
-
-    <!-- Barra de info -->
-    <div
-      style="display:grid;grid-template-columns:1fr 1fr 1fr;animation:lcFadeUp .6s .2s ease both;opacity:0;animation-fill-mode:forwards;">
-
-      <!-- Endereço -->
-      <a href="https://maps.google.com/?q=Rua+Dr+Francisco+Feitosa" target="_blank"
-        style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 12px;gap:6px;text-decoration:none;border-right:1px solid rgba(255,255,255,0.06);transition:background .2s;"
-       >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="1.8"
-          stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
-          <circle cx="12" cy="9" r="2.5" />
-        </svg>
-        <span
-          style="font-family:'DM Sans',sans-serif;font-size:.72rem;color:rgba(255,255,255,0.45);text-align:center;line-height:1.4;">Rua
-          Dr.<br>Francisco Feitosa</span>
-      </a>
-
-      <!-- WhatsApp -->
-      <a href="https://wa.me/5583998775498" target="_blank"
-        style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 12px;gap:6px;text-decoration:none;border-right:1px solid rgba(255,255,255,0.06);transition:background .2s;"
-       >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="#4ade80">
-          <path
-            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-          <path
-            d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.528 5.858L.057 23.547a.75.75 0 0 0 .922.899l5.803-1.522A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.725 9.725 0 0 1-4.953-1.352l-.355-.212-3.683.965.983-3.596-.232-.371A9.718 9.718 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z" />
-        </svg>
-        <span
-          style="font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:500;color:#4ade80;text-align:center;">(83)
-          9 9877-5498</span>
-      </a>
-
-      <!-- Pagamentos -->
-      <div
-        style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 12px;gap:6px;">
-        <div style="display:flex;gap:10px;align-items:center;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.8"
-            stroke-linecap="round">
-            <rect x="2" y="6" width="20" height="12" rx="2" />
-            <circle cx="12" cy="12" r="3" />
-            <path d="M6 12h.01M18 12h.01" />
-          </svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.8"
-            stroke-linecap="round">
-            <rect x="2" y="5" width="20" height="14" rx="2" />
-            <path d="M2 10h20" />
-          </svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(255,255,255,0.4)">
-            <path
-              d="M15.6 4.8l-3.6 3.6-3.6-3.6L6 7.2l3.6 3.6-3.6 3.6 2.4 2.4 3.6-3.6 3.6 3.6 2.4-2.4-3.6-3.6 3.6-3.6z" />
-          </svg>
-        </div>
-        <span style="font-family:'DM Sans',sans-serif;font-size:.7rem;color:rgba(255,255,255,0.3);">Dinheiro · Cartão ·
-          Pix</span>
-      </div>
-    </div>
-
-    <!-- Linha decorativa base -->
-    <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(250,204,21,0.15),transparent);"></div>
-
-    <!-- Dev credit -->
-    <div
-      style="text-align:center;padding:10px 0 14px;font-family:'DM Sans',sans-serif;font-size:.68rem;color:rgba(255,255,255,0.18);">
-      Site criado por
-      <a href="https://www.instagram.com/thlago.alves" target="_blank"
-        style="color:rgba(250,204,21,0.4);text-decoration:none;font-weight:500;transition:.2s;"
-       >
-        @thlago.alves
-      </a>
-    </div>
-
   </header>
-  <!-- FIM HEADER -->
 
-  <h2 class="text-2xl md:text-3xl font-bold text-center mt-9 mb-6">
-    Conheça nosso Menu
-  </h2>
-  <div class="mx-auto max-w-7xl px-2 my-2">
-    <h2 class="font-bold text-2xl">F´S</h2>
+  <!-- ══════════════════════════════════════
+       NAV STICKY
+  ══════════════════════════════════════ -->
+  <div class="lc-nav-wrapper">
+    <div class="lc-nav-inner-wrap">
+      <div class="lc-nav-inner">
+        <nav class="lc-nav" id="category-nav">
+          <button class="cat-btn active" data-target="sec-fs">🥪 F's</button>
+          <button class="cat-btn" data-target="sec-tradicionais">🍔 Tradicionais</button>
+          <button class="cat-btn" data-target="sec-especiais">⭐ Especiais</button>
+          <button class="cat-btn" data-target="sec-salgados">🥐 Salgados</button>
+          <button class="cat-btn" data-target="sec-sucos">🍹 Sucos</button>
+          <button class="cat-btn" data-target="sec-vitaminas">🥛 Vitaminas</button>
+          <button class="cat-btn" data-target="sec-salada">🍓 Saladas</button>
+          <button class="cat-btn" data-target="sec-nordestina">🌽 Nordestina</button>
+          <button class="cat-btn" data-target="sec-tapiocas">🫔 Tapiocas</button>
+          <button class="cat-btn" data-target="sec-bebidas">🥤 Bebidas</button>
+        </nav>
+        <button class="cat-btn--search" id="search-toggle" aria-label="Buscar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+          <span class="search-text">Buscar</span>
+        </button>
+      </div><!-- /lc-nav-inner -->
+    </div><!-- /lc-nav-inner-wrap -->
+
+    <!-- Overlay de busca — desliza sobre a nav -->
+    <div class="lc-search-overlay" id="search-overlay">
+      <svg class="lc-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round">
+        <circle cx="11" cy="11" r="8" />
+        <path d="m21 21-4.35-4.35" />
+      </svg>
+      <input type="text" id="search-input" class="lc-search-overlay__input" placeholder="Buscar no cardápio..."
+        autocomplete="off" />
+      <button class="lc-search-overlay__close" id="search-close">✕</button>
+    </div>
   </div>
+  <div class="lc-no-results" id="no-results">
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.18)" stroke-width="1.5"
+      stroke-linecap="round">
+      <circle cx="11" cy="11" r="8" />
+      <path d="m21 21-4.35-4.35" />
+      <path d="M8 11h6M11 8v6" stroke="rgba(249,115,22,.3)" stroke-width="1.5" />
+    </svg>
+    <p style="margin:0;font-weight:600;color:rgba(0,0,0,.4);font-size:.9rem">Nenhum item encontrado</p>
+    <p style="margin:0;font-size:.78rem;color:rgba(0,0,0,.22)">Tente buscar por outro nome ou ingrediente</p>
+  </div>
+
   <!--INICIO MENU-->
   <div id="menu">
-    <main class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16">
+    <div id="sec-fs" class="section-title"><span>F´S</span></div>
+    <div class="menu-grid">
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="F1"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">F1</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="F1" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">F1</p>
+          <p class="menu-card__desc">
             Filé, Mussarela, Verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 8.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="F1" data-price="8.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 8.00</p>
+            <button class="add-to-cart-btn" data-name="F1" data-price="8.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -276,17 +135,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f2"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">F2</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f2" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">F2</p>
+          <p class="menu-card__desc">
             Filé, Mussarela, Presunto, Verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 9.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="F2" data-price="9.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 9.00</p>
+            <button class="add-to-cart-btn" data-name="F2" data-price="9.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -294,17 +152,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f3"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">F3</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f3" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">F3</p>
+          <p class="menu-card__desc">
             Filé, Mussarela, Presunto, Salsicha, Verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 10.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="F3" data-price="10.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 10.00</p>
+            <button class="add-to-cart-btn" data-name="F3" data-price="10.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -312,17 +169,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f4"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">F4</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f4" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">F4</p>
+          <p class="menu-card__desc">
             Filé, presunto, Coalho, Verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 11.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="F4" data-price="11.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 11.00</p>
+            <button class="add-to-cart-btn" data-name="F4" data-price="11.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -330,17 +186,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f5"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">F5</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f5" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">F5</p>
+          <p class="menu-card__desc">
             Filé, Queijo Manteiga, Mussarela, Ovo, Calabrasa, Verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 12.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="F5" data-price="12.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 12.00</p>
+            <button class="add-to-cart-btn" data-name="F5" data-price="12.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -348,17 +203,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f6"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">F6</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f6" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">F6</p>
+          <p class="menu-card__desc">
             Filé, Bacon, Mussarela, Frango, Milho, Verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 13.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="F6" data-price="13.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 13.00</p>
+            <button class="add-to-cart-btn" data-name="F6" data-price="13.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -366,40 +220,36 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">F7</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">F7</p>
+          <p class="menu-card__desc">
             Filé, Bacon, Ovo, Mussarela, Salsicha, Calabrasa, Verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 14.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="F7" data-price="14.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 14.00</p>
+            <button class="add-to-cart-btn" data-name="F7" data-price="14.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
         </div>
       </div>
       <!-- fim do produtos-->
-    </main>
-    <div class="mx-auto max-w-7xl px-2 my-2">
-      <h2 class="font-bold text-2xl">Tradicionais</h2>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16" id="menu">
+    <div id="sec-tradicionais" class="section-title"><span>Tradicionais</span></div>
+    <div class="menu-grid">
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="Nordestino"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Nordestino</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="Nordestino" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Nordestino</p>
+          <p class="menu-card__desc">
             Caner de sol na nata, mossarela, presunto, verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 10.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Nordestino" data-price="10.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 10.00</p>
+            <button class="add-to-cart-btn" data-name="Nordestino" data-price="10.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -407,17 +257,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Sertanejo</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Sertanejo</p>
+          <p class="menu-card__desc">
             Carne de sol na nata, ovo, coalho, verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 11.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Sertanejo" data-price="11.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 11.00</p>
+            <button class="add-to-cart-btn" data-name="Sertanejo" data-price="11.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -425,17 +274,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Torrada</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Torrada</p>
+          <p class="menu-card__desc">
             Queijo de Manteiga.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 5.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Torrada" data-price="5.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 5.00</p>
+            <button class="add-to-cart-btn" data-name="Torrada" data-price="5.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -443,17 +291,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Pão com Ovo</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Pão com Ovo</p>
+          <p class="menu-card__desc">
             Ovo queijo e verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 6.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Pão com Ovo" data-price="6.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 6.00</p>
+            <button class="add-to-cart-btn" data-name="Pão com Ovo" data-price="6.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -461,17 +308,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Mistão</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Mistão</p>
+          <p class="menu-card__desc">
             Queijo, presunto, salsicha e verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 8.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Mistão" data-price="8.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 8.00</p>
+            <button class="add-to-cart-btn" data-name="Mistão" data-price="8.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -479,17 +325,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Misto Quente</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Misto Quente</p>
+          <p class="menu-card__desc">
             Queijo e presunto.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 7.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Misto quente" data-price="7.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 7.00</p>
+            <button class="add-to-cart-btn" data-name="Misto quente" data-price="7.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -497,17 +342,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Baurú</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Baurú</p>
+          <p class="menu-card__desc">
             Queijo, presunto, ovo e verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 9.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Baurú" data-price="9.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 9.00</p>
+            <button class="add-to-cart-btn" data-name="Baurú" data-price="9.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -515,17 +359,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Baurú Especial</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Baurú Especial</p>
+          <p class="menu-card__desc">
             Queijo, presunto, ovo, filé, verdura, e milho verde.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 11.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Baurú especial" data-price="11.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 11.00</p>
+            <button class="add-to-cart-btn" data-name="Baurú especial" data-price="11.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -533,17 +376,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Hambúrguer</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Hambúrguer</p>
+          <p class="menu-card__desc">
             Caerne de hambúrguer, queijo, presunto, e verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 9.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="hambúrguer" data-price="9.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 9.00</p>
+            <button class="add-to-cart-btn" data-name="hambúrguer" data-price="9.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -551,17 +393,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Frangote</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Frangote</p>
+          <p class="menu-card__desc">
             Frango, queijo, milho verde e verdura..
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 9.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Frangote" data-price="9.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 9.00</p>
+            <button class="add-to-cart-btn" data-name="Frangote" data-price="9.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -569,17 +410,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">X-Tudo</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">X-Tudo</p>
+          <p class="menu-card__desc">
             Carne de hambúrguer, queijo, mortadela, salsicha, ovo, cerne de moida, e verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 16.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="X-Tudo" data-price="16.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 16.00</p>
+            <button class="add-to-cart-btn" data-name="X-Tudo" data-price="16.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -587,17 +427,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">X-Burguer</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">X-Burguer</p>
+          <p class="menu-card__desc">
             Caner de hambúrguer, quiejo, bacon, ovo e verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 13.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="X-Burguer" data-price="13.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 13.00</p>
+            <button class="add-to-cart-btn" data-name="X-Burguer" data-price="13.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -605,17 +444,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">X-Salada</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">X-Salada</p>
+          <p class="menu-card__desc">
             Carne de hambúrguer, queijo, salsicha, ovo, e verdura
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 10.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="X-Salada" data-price="10.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 10.00</p>
+            <button class="add-to-cart-btn" data-name="X-Salada" data-price="10.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -623,22 +461,19 @@
       </div>
       <!-- fim do produtos-->
     </div>
-    <div class="mx-auto max-w-7xl px-2 my-2">
-      <h2 class="font-bold text-2xl">Especiais</h2>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16" id="menu">
+    <div id="sec-especiais" class="section-title"><span>Especiais</span></div>
+    <div class="menu-grid">
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Fusca Turbo</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Fusca Turbo</p>
+          <p class="menu-card__desc">
             Carne de hambúrguer, presunto, salsicha, mussarela, batata palha, verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 10.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Fusca Turbo" data-price="10.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 10.00</p>
+            <button class="add-to-cart-btn" data-name="Fusca Turbo" data-price="10.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -646,17 +481,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Onix</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Onix</p>
+          <p class="menu-card__desc">
             Carne de Hambúrguer, mussarela bacon, verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 11.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Onix" data-price="11.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 11.00</p>
+            <button class="add-to-cart-btn" data-name="Onix" data-price="11.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -664,17 +498,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Corola</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Corola</p>
+          <p class="menu-card__desc">
             Filé, bacon, mussarela, coalho, verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 13.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Corola" data-price="13.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 13.00</p>
+            <button class="add-to-cart-btn" data-name="Corola" data-price="13.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -682,17 +515,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Ranger</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Ranger</p>
+          <p class="menu-card__desc">
             Filé, bacon, mussarela, presunto,catupiry, verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 15.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Ranger" data-price="15.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 15.00</p>
+            <button class="add-to-cart-btn" data-name="Ranger" data-price="15.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -700,17 +532,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Toro</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Toro</p>
+          <p class="menu-card__desc">
             Filé, bacon, presunto, catupiry, milho verde.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 14.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Toro" data-price="14.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 14.00</p>
+            <button class="add-to-cart-btn" data-name="Toro" data-price="14.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -718,17 +549,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Mitsubishi</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Mitsubishi</p>
+          <p class="menu-card__desc">
             Filé, bacon, ovo, mussarela, salsicha, presunto, catupiry e verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 15.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Mitsubishi" data-price="15.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 15.00</p>
+            <button class="add-to-cart-btn" data-name="Mitsubishi" data-price="15.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -736,17 +566,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Mercedes</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Mercedes</p>
+          <p class="menu-card__desc">
             Filé, bacon, mussarela, salsicha, presunto, catupiry, milho e verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 15.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Mercedes" data-price="15.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 15.00</p>
+            <button class="add-to-cart-btn" data-name="Mercedes" data-price="15.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -754,17 +583,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Ferrari</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Ferrari</p>
+          <p class="menu-card__desc">
             Carne de hambúrguer, bacon, ovo, mussarela, salsicha, presunto, catupiry, milho e verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 16.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Ferrari" data-price="16.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 16.00</p>
+            <button class="add-to-cart-btn" data-name="Ferrari" data-price="16.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -772,17 +600,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Frontier</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Frontier</p>
+          <p class="menu-card__desc">
             Bacon, ovo, mussarela, presunto, catupiry, milho e verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 14.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Frontier" data-price="14.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 14.00</p>
+            <button class="add-to-cart-btn" data-name="Frontier" data-price="14.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -790,17 +617,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Mustang</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Mustang</p>
+          <p class="menu-card__desc">
             Frango, bacon, ovo, mussarela, presunto, catupiry e verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 15.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Mustang" data-price="15.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 15.00</p>
+            <button class="add-to-cart-btn" data-name="Mustang" data-price="15.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -808,17 +634,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Vectra</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Vectra</p>
+          <p class="menu-card__desc">
             Filé, bacon, mussarela, milho e verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 13.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Vectra" data-price="13.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 13.00</p>
+            <button class="add-to-cart-btn" data-name="Vectra" data-price="13.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -826,17 +651,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Clio</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Clio</p>
+          <p class="menu-card__desc">
             Caner de hambúrguer, calabresa, mussarela e Verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 13.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Clio" data-price="13.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 13.00</p>
+            <button class="add-to-cart-btn" data-name="Clio" data-price="13.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -844,17 +668,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Astra</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Astra</p>
+          <p class="menu-card__desc">
             Carne de Hambúrguer, bacon, batata palha, e verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 12.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Astra" data-price="12.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 12.00</p>
+            <button class="add-to-cart-btn" data-name="Astra" data-price="12.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -862,17 +685,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Santana</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Santana</p>
+          <p class="menu-card__desc">
             carne de hambúrguer, mussarela, presunto, catupiry e verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 11.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Santana" data-price="11.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 11.00</p>
+            <button class="add-to-cart-btn" data-name="Santana" data-price="11.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -880,17 +702,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Gol</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Gol</p>
+          <p class="menu-card__desc">
             Carne de hambúrguer, mussarela, presunto, coalho, e verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 11.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Gol" data-price="11.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 11.00</p>
+            <button class="add-to-cart-btn" data-name="Gol" data-price="11.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -898,17 +719,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Corsa</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Corsa</p>
+          <p class="menu-card__desc">
             Carne de hambúrguer, bacon, mussarela e verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 9.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Corsa" data-price="9.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 9.00</p>
+            <button class="add-to-cart-btn" data-name="Corsa" data-price="9.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -916,17 +736,16 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2">
-        <img src="assets/hambúrguer ia.avif" alt="f7"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="flex flex-col justify-between flex-grow">
-          <p class="font-bold">Fiat</p>
-          <p class="text-sm">
+      <div class="menu-card">
+        <img src="assets/hambúrguer ia.avif" alt="f7" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Fiat</p>
+          <p class="menu-card__desc">
             Carne de hambúrguer, ovo, mussarela e verdura.
           </p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 9.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Fiat" data-price="9.00">
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 9.00</p>
+            <button class="add-to-cart-btn" data-name="Fiat" data-price="9.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -934,20 +753,17 @@
       </div>
       <!-- fim do produtos-->
     </div>
-    <div class="mx-auto max-w-7xl px-2 my-2">
-      <h2 class="font-bold text-2xl">Salgados</h2>
-    </div>
+    <div id="sec-salgados" class="section-title"><span>Salgados</span></div>
     <!--Grid Pasteis-->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16" id="menu">
+    <div class="menu-grid">
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/pastel-img.jpg" alt="Pastel de carne"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Pastel de carne</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 2.50</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Pastel de carne" data-price="2.50">
+      <div class="menu-card">
+        <img src="assets/pastel-img.jpg" alt="Pastel de carne" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Pastel de carne</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 2.50</p>
+            <button class="add-to-cart-btn" data-name="Pastel de carne" data-price="2.50">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -955,14 +771,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/pastel-img.jpg" alt="Pastel de frango"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Pastel de frango</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 2.50</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Pastel de frango" data-price="2.50">
+      <div class="menu-card">
+        <img src="assets/pastel-img.jpg" alt="Pastel de frango" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Pastel de frango</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 2.50</p>
+            <button class="add-to-cart-btn" data-name="Pastel de frango" data-price="2.50">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -970,14 +785,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/pastel-img.jpg" alt="Pastel de queijo"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Pastel de queijo</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 2.50</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Pastel de queijo" data-price="2.50">
+      <div class="menu-card">
+        <img src="assets/pastel-img.jpg" alt="Pastel de queijo" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Pastel de queijo</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 2.50</p>
+            <button class="add-to-cart-btn" data-name="Pastel de queijo" data-price="2.50">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -985,14 +799,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/partel-forno.jpg" alt="Pastel de forno"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Pastel de forno de frango</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 4.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Pastel de forno" data-price="4.00">
+      <div class="menu-card">
+        <img src="assets/partel-forno.jpg" alt="Pastel de forno" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Pastel de forno de frango</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 4.00</p>
+            <button class="add-to-cart-btn" data-name="Pastel de forno" data-price="4.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1000,14 +813,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/empadao.jpg" alt="Empada de frango"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Empada de frango</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 4.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Empada de frango" data-price="4.00">
+      <div class="menu-card">
+        <img src="assets/empadao.jpg" alt="Empada de frango" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Empada de frango</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 4.00</p>
+            <button class="add-to-cart-btn" data-name="Empada de frango" data-price="4.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1015,14 +827,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/coxinha_.webp" alt="Coxinha de frango"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Coxinha de frango</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 2.50</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Coxinha de frango" data-price="2.50">
+      <div class="menu-card">
+        <img src="assets/coxinha_.webp" alt="Coxinha de frango" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Coxinha de frango</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 2.50</p>
+            <button class="add-to-cart-btn" data-name="Coxinha de frango" data-price="2.50">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1030,15 +841,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/ENROLADO-SALSICHA.jpg" alt="Enroladinho de salsicha "
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Enroladinho de salsicha</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 2.50</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Enroladinho de salsicha "
-              data-price="2.50">
+      <div class="menu-card">
+        <img src="assets/ENROLADO-SALSICHA.jpg" alt="Enroladinho de salsicha " class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Enroladinho de salsicha</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 2.50</p>
+            <button class="add-to-cart-btn" data-name="Enroladinho de salsicha " data-price="2.50">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1046,14 +855,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/esfirra.webp" alt="Esfirra de frango"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Esfirra de frango</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 4.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Esfirra de frango" data-price="4.00">
+      <div class="menu-card">
+        <img src="assets/esfirra.webp" alt="Esfirra de frango" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Esfirra de frango</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 4.00</p>
+            <button class="add-to-cart-btn" data-name="Esfirra de frango" data-price="4.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1062,20 +870,17 @@
       <!-- fim do produtos-->
     </div>
     <!--Fim Grid Pasteis-->
-    <div class="mx-auto max-w-7xl px-2 my-2">
-      <h2 class="font-bold text-2xl">Sucos</h2>
-    </div>
+    <div id="sec-sucos" class="section-title"><span>Sucos</span></div>
     <!--Grid de Sucos-->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16" id="menu">
+    <div class="menu-grid">
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/maracuja.jpg" alt="Suco de maracujá"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Suco de maracujá</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 3.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Suco de maracujá" data-price="3.00">
+      <div class="menu-card">
+        <img src="assets/maracuja.jpg" alt="Suco de maracujá" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Suco de maracujá</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 3.00</p>
+            <button class="add-to-cart-btn" data-name="Suco de maracujá" data-price="3.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1083,14 +888,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/goiaba-.jpg" alt="Suco de goiaba"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Suco de goiaba</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 3.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Suco de goiaba" data-price="3.00">
+      <div class="menu-card">
+        <img src="assets/goiaba-.jpg" alt="Suco de goiaba" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Suco de goiaba</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 3.00</p>
+            <button class="add-to-cart-btn" data-name="Suco de goiaba" data-price="3.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1098,14 +902,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/suco-caju.jpg" alt="Suco de caju"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Suco de caju</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 3.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Suco de caju" data-price="3.00">
+      <div class="menu-card">
+        <img src="assets/suco-caju.jpg" alt="Suco de caju" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Suco de caju</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 3.00</p>
+            <button class="add-to-cart-btn" data-name="Suco de caju" data-price="3.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1113,14 +916,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/suco-laranja.png" alt="Suco de laranja"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Suco de laranja</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 8.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Suco de laranja" data-price="8.00">
+      <div class="menu-card">
+        <img src="assets/suco-laranja.png" alt="Suco de laranja" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Suco de laranja</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 8.00</p>
+            <button class="add-to-cart-btn" data-name="Suco de laranja" data-price="8.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1128,15 +930,14 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/gripao.png" alt="Gripão"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Gripão</p>
-          <p class="text-sm">Laranja, acerola, limão, gengibre, beterraba e mel</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 9.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Gripão" data-price="9.00">
+      <div class="menu-card">
+        <img src="assets/gripao.png" alt="Gripão" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Gripão</p>
+          <p class="menu-card__desc">Laranja, acerola, limão, gengibre, beterraba e mel</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 9.00</p>
+            <button class="add-to-cart-btn" data-name="Gripão" data-price="9.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1144,14 +945,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/suco-de-graviola.jpg" alt="Suco de graviola"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Suco de graviola</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 5.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Suco de graviola" data-price="5.00">
+      <div class="menu-card">
+        <img src="assets/suco-de-graviola.jpg" alt="Suco de graviola" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Suco de graviola</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 5.00</p>
+            <button class="add-to-cart-btn" data-name="Suco de graviola" data-price="5.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1159,14 +959,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/abacaxi-suco.jpeg" alt="Suco de abacaxi"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Suco de abacaxi</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 5.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Suco de abacaxi" data-price="5.00">
+      <div class="menu-card">
+        <img src="assets/abacaxi-suco.jpeg" alt="Suco de abacaxi" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Suco de abacaxi</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 5.00</p>
+            <button class="add-to-cart-btn" data-name="Suco de abacaxi" data-price="5.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1174,14 +973,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/manga-sucoo.avif" alt="Suco de manga"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Suco de manga</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 3.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Suco de manga" data-price="3.00">
+      <div class="menu-card">
+        <img src="assets/manga-sucoo.avif" alt="Suco de manga" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Suco de manga</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 3.00</p>
+            <button class="add-to-cart-btn" data-name="Suco de manga" data-price="3.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1189,14 +987,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/caja.jpg" alt="Suco de cajá"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Suco de cajá</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 5.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Suco de cajá" data-price="5.00">
+      <div class="menu-card">
+        <img src="assets/caja.jpg" alt="Suco de cajá" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Suco de cajá</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 5.00</p>
+            <button class="add-to-cart-btn" data-name="Suco de cajá" data-price="5.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1205,20 +1002,17 @@
       <!-- fim do produtos-->
     </div>
     <!--Fim da grid de sucos-->
-    <div class="mx-auto max-w-7xl px-2 my-2">
-      <h2 class="font-bold text-2xl">Vitaminas</h2>
-    </div>
+    <div id="sec-vitaminas" class="section-title"><span>Vitaminas</span></div>
     <!--Grid vitaminas-->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16" id="menu">
+    <div class="menu-grid">
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/vitamina-de-abacate.jpg" alt="Vitamina de abacate"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Vitamina de abacate</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 8.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Vitamina de abacate" data-price="8.00">
+      <div class="menu-card">
+        <img src="assets/vitamina-de-abacate.jpg" alt="Vitamina de abacate" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Vitamina de abacate</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 8.00</p>
+            <button class="add-to-cart-btn" data-name="Vitamina de abacate" data-price="8.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1226,14 +1020,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/morango-vit.png" alt="Vitamina de morango"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Vitamina de morango</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 8.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Vitamina de morango" data-price="8.00">
+      <div class="menu-card">
+        <img src="assets/morango-vit.png" alt="Vitamina de morango" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Vitamina de morango</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 8.00</p>
+            <button class="add-to-cart-btn" data-name="Vitamina de morango" data-price="8.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1241,14 +1034,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/banana_vit.avif" alt="Vitamina de banana"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Vitamina de banana</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 8.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Vitamina de banana" data-price="8.00">
+      <div class="menu-card">
+        <img src="assets/banana_vit.avif" alt="Vitamina de banana" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Vitamina de banana</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 8.00</p>
+            <button class="add-to-cart-btn" data-name="Vitamina de banana" data-price="8.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1256,14 +1048,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/açai.jpg" alt="Vitamina de açai"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Vitamina de açai</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 10.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Vitamina de açai" data-price="10.00">
+      <div class="menu-card">
+        <img src="assets/açai.jpg" alt="Vitamina de açai" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Vitamina de açai</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 10.00</p>
+            <button class="add-to-cart-btn" data-name="Vitamina de açai" data-price="10.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1271,14 +1062,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/caja.jpg" alt="Vitamina de cajá"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Vitamina de cajá</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 8.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Vitamina de cajá" data-price="8.00">
+      <div class="menu-card">
+        <img src="assets/caja.jpg" alt="Vitamina de cajá" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Vitamina de cajá</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 8.00</p>
+            <button class="add-to-cart-btn" data-name="Vitamina de cajá" data-price="8.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1286,14 +1076,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/maracuja.jpg" alt="Vitamina de maracujá"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Vitamina de maracujá</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 8.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Vitamina de maracujá" data-price="8.00">
+      <div class="menu-card">
+        <img src="assets/maracuja.jpg" alt="Vitamina de maracujá" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Vitamina de maracujá</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 8.00</p>
+            <button class="add-to-cart-btn" data-name="Vitamina de maracujá" data-price="8.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1301,14 +1090,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/goiaba-.jpg" alt="Vitamina de goiaba"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Vitamina de goiaba</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 8.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Vitamina de goiaba" data-price="8.00">
+      <div class="menu-card">
+        <img src="assets/goiaba-.jpg" alt="Vitamina de goiaba" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Vitamina de goiaba</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 8.00</p>
+            <button class="add-to-cart-btn" data-name="Vitamina de goiaba" data-price="8.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1316,14 +1104,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/suco-de-graviola.jpg" alt="Vitamina de graviola"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Vitamina de graviola</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 8.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Vitamina de graviola" data-price="8.00">
+      <div class="menu-card">
+        <img src="assets/suco-de-graviola.jpg" alt="Vitamina de graviola" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Vitamina de graviola</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 8.00</p>
+            <button class="add-to-cart-btn" data-name="Vitamina de graviola" data-price="8.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1331,14 +1118,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/suco-caju.jpg" alt="Vitamina de caju"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Vitamina de caju</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 8.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Vitamina de caju" data-price="8.00">
+      <div class="menu-card">
+        <img src="assets/suco-caju.jpg" alt="Vitamina de caju" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Vitamina de caju</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 8.00</p>
+            <button class="add-to-cart-btn" data-name="Vitamina de caju" data-price="8.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1346,14 +1132,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/mamao.jpg" alt="Vitamina de mamão"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Vitamina de mamão</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 8.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Vitamina de mamão" data-price="8.00">
+      <div class="menu-card">
+        <img src="assets/mamao.jpg" alt="Vitamina de mamão" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Vitamina de mamão</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 8.00</p>
+            <button class="add-to-cart-btn" data-name="Vitamina de mamão" data-price="8.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1361,14 +1146,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/suco-cacau.jpg" alt="Vitamina de cacau"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Vitamina de cacau</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 8.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Vitamina de cacau" data-price="8.00">
+      <div class="menu-card">
+        <img src="assets/suco-cacau.jpg" alt="Vitamina de cacau" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Vitamina de cacau</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 8.00</p>
+            <button class="add-to-cart-btn" data-name="Vitamina de cacau" data-price="8.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1376,14 +1160,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/Cupuacu.png" alt="Vitamina de cupuaçu"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Vitamina de cupuaçu</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 8.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Vitamina de cupuaçu" data-price="8.00">
+      <div class="menu-card">
+        <img src="assets/Cupuacu.png" alt="Vitamina de cupuaçu" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Vitamina de cupuaçu</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 8.00</p>
+            <button class="add-to-cart-btn" data-name="Vitamina de cupuaçu" data-price="8.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1391,14 +1174,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/emeixa.jpg" alt="Vitamina de ameixa"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Vitamina de ameixa</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 8.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Vitamina de ameixa" data-price="8.00">
+      <div class="menu-card">
+        <img src="assets/emeixa.jpg" alt="Vitamina de ameixa" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Vitamina de ameixa</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 8.00</p>
+            <button class="add-to-cart-btn" data-name="Vitamina de ameixa" data-price="8.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1406,14 +1188,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/uva.jpg" alt="Vitamina de uva"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Vitamina de uva</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 8.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Vitamina de uva" data-price="8.00">
+      <div class="menu-card">
+        <img src="assets/uva.jpg" alt="Vitamina de uva" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Vitamina de uva</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 8.00</p>
+            <button class="add-to-cart-btn" data-name="Vitamina de uva" data-price="8.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1421,14 +1202,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/melao.jpg" alt="Vitamina de melão"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Vitamina de melão</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 8.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Vitamina de melão" data-price="8.00">
+      <div class="menu-card">
+        <img src="assets/melao.jpg" alt="Vitamina de melão" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Vitamina de melão</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 8.00</p>
+            <button class="add-to-cart-btn" data-name="Vitamina de melão" data-price="8.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1438,21 +1218,17 @@
 
     </div>
     <!--Fim grid vitaminas-->
-    <div class="mx-auto max-w-7xl px-2 my-2">
-      <h2 class="font-bold text-2xl">Salada de frutas</h2>
-    </div>
+    <div id="sec-salada" class="section-title"><span>Salada de frutas</span></div>
     <!--Grid de salada-->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16" id="menu">
+    <div class="menu-grid">
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/salada.jpg" alt="Salada de frutas"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Salada de frutas grande</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 6.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Salada de frutas grande"
-              data-price="6.00">
+      <div class="menu-card">
+        <img src="assets/salada.jpg" alt="Salada de frutas" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Salada de frutas grande</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 6.00</p>
+            <button class="add-to-cart-btn" data-name="Salada de frutas grande" data-price="6.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1460,15 +1236,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/salada.jpg" alt="Salada de frutas"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Salada de frutas pequena</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 4.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Salada de frutas pequena"
-              data-price="4.00">
+      <div class="menu-card">
+        <img src="assets/salada.jpg" alt="Salada de frutas" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Salada de frutas pequena</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 4.00</p>
+            <button class="add-to-cart-btn" data-name="Salada de frutas pequena" data-price="4.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1478,22 +1252,19 @@
     </div>
     <!--fim grid salada-->
 
-    <div class="mx-auto max-w-7xl px-2 my-2">
-      <h2 class="font-bold text-2xl">Culinária nordestina</h2>
-    </div>
+    <div id="sec-nordestina" class="section-title"><span>Culinária nordestina</span></div>
     <!--Grid do cuscuz-->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16" id="menu">
+    <div class="menu-grid">
       <!--produtos-->
-      <div class="flex gap-2 w-full">
+      <div class="menu-card">
         <img src="assets/cuscuz.png
   
-  " alt="Cuscuz rechado grande" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Cuscuz rechado grande</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 8.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Cuscuz rechado grande"
-              data-price="8.00">
+  " alt="Cuscuz rechado grande" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Cuscuz rechado grande</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 8.00</p>
+            <button class="add-to-cart-btn" data-name="Cuscuz rechado grande" data-price="8.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1501,15 +1272,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/cuscuz.png" alt="Cuscuz rechado pequeno"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Cuscuz rechado pequeno</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 6.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Cuscuz rechado pequeno"
-              data-price="6.00">
+      <div class="menu-card">
+        <img src="assets/cuscuz.png" alt="Cuscuz rechado pequeno" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Cuscuz rechado pequeno</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 6.00</p>
+            <button class="add-to-cart-btn" data-name="Cuscuz rechado pequeno" data-price="6.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1517,15 +1286,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/bolacha.jpg" alt="Bolacha assada na manteiga"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Bolacha assada na manteiga</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 12.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Bolacha assada na manteiga"
-              data-price="12.00">
+      <div class="menu-card">
+        <img src="assets/bolacha.jpg" alt="Bolacha assada na manteiga" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Bolacha assada na manteiga</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 12.00</p>
+            <button class="add-to-cart-btn" data-name="Bolacha assada na manteiga" data-price="12.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1533,15 +1300,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/bolacha.jpg" alt="Bolacha assada ao leite"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Bolacha assada ao leite</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 12.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Bolacha assada ao leite"
-              data-price="12.00">
+      <div class="menu-card">
+        <img src="assets/bolacha.jpg" alt="Bolacha assada ao leite" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Bolacha assada ao leite</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 12.00</p>
+            <button class="add-to-cart-btn" data-name="Bolacha assada ao leite" data-price="12.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1549,14 +1314,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/omelete.avif" alt="Omelete"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Omelete</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 12.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Omelete" data-price="12.00">
+      <div class="menu-card">
+        <img src="assets/omelete.avif" alt="Omelete" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Omelete</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 12.00</p>
+            <button class="add-to-cart-btn" data-name="Omelete" data-price="12.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1564,14 +1328,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/omelete.avif" alt="crepioca"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Crepioca</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 12.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Crepioca" data-price="12.00">
+      <div class="menu-card">
+        <img src="assets/omelete.avif" alt="crepioca" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Crepioca</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 12.00</p>
+            <button class="add-to-cart-btn" data-name="Crepioca" data-price="12.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1580,20 +1343,17 @@
       <!-- fim do produtos-->
     </div>
     <!--Fim grid-->
-    <div class="mx-auto max-w-7xl px-2 my-2">
-      <h2 class="font-bold text-2xl">Tapiocas rechadas</h2>
-    </div>
+    <div id="sec-tapiocas" class="section-title"><span>Tapiocas rechadas</span></div>
     <!--Grid tapiocas-->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16" id="menu">
+    <div class="menu-grid">
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/tapioca.jpg" alt="Tapioca com manteiga"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Tapioca com manteiga</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 2.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Tapioca com manteiga" data-price="2.00">
+      <div class="menu-card">
+        <img src="assets/tapioca.jpg" alt="Tapioca com manteiga" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Tapioca com manteiga</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 2.00</p>
+            <button class="add-to-cart-btn" data-name="Tapioca com manteiga" data-price="2.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1601,15 +1361,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/tapioca.jpg" alt="Tapioca com carne de sol na nata"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Tapioca com carne de sol na nata</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 8.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Tapioca com carne de sol na nata"
-              data-price="8.00">
+      <div class="menu-card">
+        <img src="assets/tapioca.jpg" alt="Tapioca com carne de sol na nata" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Tapioca com carne de sol na nata</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 8.00</p>
+            <button class="add-to-cart-btn" data-name="Tapioca com carne de sol na nata" data-price="8.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1617,15 +1375,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/tapioca.jpg" alt="Tapioca com frango"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Tapioca com frango</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 8.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Tapioca com carne frango"
-              data-price="8.00">
+      <div class="menu-card">
+        <img src="assets/tapioca.jpg" alt="Tapioca com frango" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Tapioca com frango</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 8.00</p>
+            <button class="add-to-cart-btn" data-name="Tapioca com carne frango" data-price="8.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1633,14 +1389,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/tapioca.jpg" alt="Tapioca com ovo"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Tapioca com ovo</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 4.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Tapioca com ovo" data-price="4.00">
+      <div class="menu-card">
+        <img src="assets/tapioca.jpg" alt="Tapioca com ovo" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Tapioca com ovo</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 4.00</p>
+            <button class="add-to-cart-btn" data-name="Tapioca com ovo" data-price="4.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1648,15 +1403,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/tapioca.jpg" alt="Tapioca com queijo manteiga"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Tapioca com queijo manteiga</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 4.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Tapioca com queijo manteiga"
-              data-price="4.00">
+      <div class="menu-card">
+        <img src="assets/tapioca.jpg" alt="Tapioca com queijo manteiga" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Tapioca com queijo manteiga</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 4.00</p>
+            <button class="add-to-cart-btn" data-name="Tapioca com queijo manteiga" data-price="4.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1664,15 +1417,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/tapioca.jpg" alt="Tapioca com queijo Mussarela"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Tapioca com queijo Muçarela</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 5.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Tapioca com queijo Mussarela"
-              data-price="5.00">
+      <div class="menu-card">
+        <img src="assets/tapioca.jpg" alt="Tapioca com queijo Mussarela" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Tapioca com queijo Muçarela</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 5.00</p>
+            <button class="add-to-cart-btn" data-name="Tapioca com queijo Mussarela" data-price="5.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1680,15 +1431,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/tapioca.jpg" alt="Tapioca com queijo coalho"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Tapioca com queijo coalho</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 5.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Tapioca com queijo coalho"
-              data-price="5.00">
+      <div class="menu-card">
+        <img src="assets/tapioca.jpg" alt="Tapioca com queijo coalho" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Tapioca com queijo coalho</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 5.00</p>
+            <button class="add-to-cart-btn" data-name="Tapioca com queijo coalho" data-price="5.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1696,15 +1445,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/tapioca.jpg" alt="Tapioca com carne de sol bacon e calabresa"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Tapioca com carne de sol bacon e calabresa</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 13.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn"
-              data-name="Tapioca com carne de sol bacon e calabresa" data-price="13.00">
+      <div class="menu-card">
+        <img src="assets/tapioca.jpg" alt="Tapioca com carne de sol bacon e calabresa" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Tapioca com carne de sol bacon e calabresa</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 13.00</p>
+            <button class="add-to-cart-btn" data-name="Tapioca com carne de sol bacon e calabresa" data-price="13.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1712,15 +1459,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/tapioca.jpg" alt="Tapioca com carne de sol e queijo coalho"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Tapioca com carne de sol e queijo coalho</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 12.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn"
-              data-name="Tapioca com carne de sol e queijo coalho" data-price="12.00">
+      <div class="menu-card">
+        <img src="assets/tapioca.jpg" alt="Tapioca com carne de sol e queijo coalho" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Tapioca com carne de sol e queijo coalho</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 12.00</p>
+            <button class="add-to-cart-btn" data-name="Tapioca com carne de sol e queijo coalho" data-price="12.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1728,15 +1473,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/tapioca.jpg" alt="Tapioca com ovo e queijo coalho"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Tapioca com ovo e queijo coalho</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 8.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Tapioca com ovo e queijo coalho"
-              data-price="8.00">
+      <div class="menu-card">
+        <img src="assets/tapioca.jpg" alt="Tapioca com ovo e queijo coalho" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Tapioca com ovo e queijo coalho</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 8.00</p>
+            <button class="add-to-cart-btn" data-name="Tapioca com ovo e queijo coalho" data-price="8.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1744,15 +1487,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/tapioca.jpg" alt="Tapioca com queijo e presunto"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Tapioca com queijo e presunto</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 6.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Tapioca com queijo e presunto"
-              data-price="6.00">
+      <div class="menu-card">
+        <img src="assets/tapioca.jpg" alt="Tapioca com queijo e presunto" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Tapioca com queijo e presunto</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 6.00</p>
+            <button class="add-to-cart-btn" data-name="Tapioca com queijo e presunto" data-price="6.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1761,20 +1502,17 @@
       <!-- fim do produtos-->
     </div>
     <!--fim grid tapiocas-->
-    <div class="mx-auto max-w-7xl px-2 my-2">
-      <h2 class="font-bold text-2xl">Bebidas</h2>
-    </div>
+    <div id="sec-bebidas" class="section-title"><span>Bebidas</span></div>
     <!--GRID BEBIDAS-->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16" id="menu">
+    <div class="menu-grid">
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/refri-1.png" alt="coca lata"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Coca Lata</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 5.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Coca lata" data-price="5.00">
+      <div class="menu-card">
+        <img src="assets/refri-1.png" alt="coca lata" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Coca Lata</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 5.00</p>
+            <button class="add-to-cart-btn" data-name="Coca lata" data-price="5.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1782,14 +1520,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/refri-2.png" alt="coca lata"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Guaraná Lata</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 5.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Guaraná lata" data-price="5.00">
+      <div class="menu-card">
+        <img src="assets/refri-2.png" alt="coca lata" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Guaraná Lata</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 5.00</p>
+            <button class="add-to-cart-btn" data-name="Guaraná lata" data-price="5.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1797,14 +1534,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/fanta.jpg" alt="coca lata"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Fanta Lata</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 5.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Fanta lata" data-price="5.00">
+      <div class="menu-card">
+        <img src="assets/fanta.jpg" alt="coca lata" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Fanta Lata</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 5.00</p>
+            <button class="add-to-cart-btn" data-name="Fanta lata" data-price="5.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1812,14 +1548,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/soda.png" alt="coca lata"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Soda Lata</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 5.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Soda lata" data-price="5.00">
+      <div class="menu-card">
+        <img src="assets/soda.png" alt="coca lata" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Soda Lata</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 5.00</p>
+            <button class="add-to-cart-btn" data-name="Soda lata" data-price="5.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1827,14 +1562,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/coca KS.jpeg" alt="coca lata"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Coca KS 290ml</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 5.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Coca KS" data-price="5.00">
+      <div class="menu-card">
+        <img src="assets/coca KS.jpeg" alt="coca lata" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Coca KS 290ml</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 5.00</p>
+            <button class="add-to-cart-btn" data-name="Coca KS" data-price="5.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1842,14 +1576,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/coca200.png" alt="coca lata"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Coca 200ml</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 4.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="coca 200ml" data-price="4.00">
+      <div class="menu-card">
+        <img src="assets/coca200.png" alt="coca lata" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Coca 200ml</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 4.00</p>
+            <button class="add-to-cart-btn" data-name="coca 200ml" data-price="4.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1857,14 +1590,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/guarana.jpeg" alt="coca lata"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Guaraná 200ml</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 3.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Guaraná 200ml" data-price="3.00">
+      <div class="menu-card">
+        <img src="assets/guarana.jpeg" alt="coca lata" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Guaraná 200ml</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 3.00</p>
+            <button class="add-to-cart-btn" data-name="Guaraná 200ml" data-price="3.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1872,14 +1604,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/fanta garrafinha.jpg" alt="coca lata"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Fanta 200ml</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 3.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Guaraná 200ml" data-price="3.00">
+      <div class="menu-card">
+        <img src="assets/fanta garrafinha.jpg" alt="coca lata" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Fanta 200ml</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 3.00</p>
+            <button class="add-to-cart-btn" data-name="Guaraná 200ml" data-price="3.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1887,14 +1618,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/kapo_uva.jpg" alt="coca lata"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Kapo Uva</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 3.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Kapo Uva" data-price="3.00">
+      <div class="menu-card">
+        <img src="assets/kapo_uva.jpg" alt="coca lata" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Kapo Uva</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 3.00</p>
+            <button class="add-to-cart-btn" data-name="Kapo Uva" data-price="3.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1902,14 +1632,13 @@
       </div>
       <!-- fim do produtos-->
       <!--produtos-->
-      <div class="flex gap-2 w-full">
-        <img src="assets/kapo_morango.png" alt="coca lata"
-          class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <div class="w-full">
-          <p class="font-bold">Kapo Morango</p>
-          <div class="flex items-center gap-2 justify-between mt-3">
-            <p class="font-bold text-lg">R$ 3.00</p>
-            <button class="bg-gray-900 px-5 rounded add-to-cart-btn" data-name="Kapo Morango" data-price="3.00">
+      <div class="menu-card">
+        <img src="assets/kapo_morango.png" alt="coca lata" class="menu-card__img" />
+        <div class="menu-card__body">
+          <p class="menu-card__name">Kapo Morango</p>
+          <div class="menu-card__footer">
+            <p class="menu-card__price">R$ 3.00</p>
+            <button class="add-to-cart-btn" data-name="Kapo Morango" data-price="3.00">
               <i class="fa fa-cart-plus text-lg text-white"></i>
             </button>
           </div>
@@ -1922,119 +1651,94 @@
   <!--FIM MENU-->
 
   <!-- MODAL CART -->
-  <div style="display:flex;justify-content:center;padding:10px 0 4px;">
-    <div style="width:36px;height:4px;border-radius:9999px;background:rgba(255,255,255,0.12);"></div>
-  </div>
-  <div
-    style="background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);width:100%;height:100%;position:fixed;top:0;left:0;z-index:99;display:none;align-items:flex-end;justify-content:center;"
-    id="cart-modal">
-    <div
-      style="background:#111;width:100%;max-width:600px;border-radius:24px 24px 0 0;display:flex;flex-direction:column;max-height:92vh;animation:lcSlideUp .35s cubic-bezier(0.32,0.72,0,1);" ">
+  <div id="cart-modal" class="lc-modal-overlay">
+    <div class="lc-modal">
+
+      <div class="lc-modal__handle">
+        <div class="lc-modal__handle-bar"></div>
+      </div>
 
       <!-- Header do modal -->
-      <div
-        style=" padding:20px 20px 16px;border-bottom:1px solid
-      rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
-      <div>
-        <h2 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#fff;margin:0;">Meu
-          Pedido</h2>
-        <p style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:rgba(255,255,255,0.35);margin:2px 0 0;">
-          Lanchonete Central</p>
-      </div>
-      <button id="close-modal-btn"
-        style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.07);border:none;color:rgba(255,255,255,0.5);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;"
-       
-       >✕</button>
-    </div>
-
-    <!-- Lista de itens (scrollável) -->
-    <div id="cart-items" style="flex:1;overflow-y:auto;padding:12px 20px;"></div>
-
-    <!-- Rodapé fixo -->
-    <div
-      style="flex-shrink:0;border-top:1px solid rgba(255,255,255,0.07);padding:20px 20px 32px;display:flex;flex-direction:column;gap:14px;">
-
-      <!-- Toggle Entrega / Retirada -->
-      <div
-        style="background:rgba(255,255,255,0.06);border-radius:12px;padding:4px;display:grid;grid-template-columns:1fr 1fr;gap:4px;">
-        <label style="cursor:pointer;">
-          <input type="radio" name="delivery-option" value="delivery" checked style="display:none;">
-          <span class="delivery-pill"
-            style="display:flex;align-items:center;justify-content:center;gap:6px;padding:10px;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;transition:.2s;background:#facc15;color:#111;">
-            🛵 Entrega
-          </span>
-        </label>
-        <label style="cursor:pointer;">
-          <input type="radio" name="delivery-option" value="pickup" style="display:none;">
-          <span class="pickup-pill"
-            style="display:flex;align-items:center;justify-content:center;gap:6px;padding:10px;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;transition:.2s;background:transparent;color:rgba(255,255,255,0.45);">
-            🏪 Retirada
-          </span>
-        </label>
-      </div>
-
-      <!-- Campo endereço -->
-      <div id="address-container">
-        <input type="text" placeholder="Seu endereço completo..." id="address"
-          style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:11px 14px;color:#fff;font-family:'DM Sans',sans-serif;font-size:.85rem;outline:none;box-sizing:border-box;transition:.2s;" />
-        <p style="color:#f87171;font-size:.75rem;margin-top:4px;display:none;" id="address-warn">Digite seu endereço
-          completo</p>
-      </div>
-
-      <!-- Observação -->
-      <div>
-        <button id="add-observation-btn"
-          style="background:none;border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:9px 14px;color:rgba(255,255,255,0.4);font-family:'DM Sans',sans-serif;font-size:.8rem;cursor:pointer;width:100%;text-align:left;transition:.2s;"
-         
-         >
-          + Adicionar observação
-        </button>
-        <div id="observation-container" class="hidden" style="margin-top:8px;">
-          <textarea id="observation" placeholder="Ex: sem cebola, ponto da carne..."
-            style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:11px 14px;color:#fff;font-family:'DM Sans',sans-serif;font-size:.85rem;outline:none;resize:none;height:80px;box-sizing:border-box;"></textarea>
-        </div>
-      </div>
-
-      <!-- Total + Finalizar -->
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+      <div class="lc-modal__header">
         <div>
-          <p style="font-family:'DM Sans',sans-serif;font-size:.7rem;color:rgba(255,255,255,0.35);margin:0;">Total</p>
-          <p style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#facc15;margin:0;"
-            id="cart-total">R$ 0,00</p>
+          <h2 class="lc-modal__title">Meu Pedido</h2>
+          <p class="lc-modal__subtitle">Lanchonete Central</p>
         </div>
-        <button id="checkout-btn"
-          style="flex:1;background:linear-gradient(135deg,#facc15,#f97316);border:none;border-radius:12px;padding:14px;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:700;color:#111;cursor:pointer;transition:.2s;max-width:200px;"
-         >
-          Finalizar via WhatsApp →
-        </button>
+        <button id="close-modal-btn" class="lc-modal__close">✕</button>
       </div>
 
+      <!-- Lista de itens (scrollável) -->
+      <div id="cart-items" class="lc-modal__body"></div>
+
+      <!-- Rodapé fixo -->
+      <div class="lc-modal__footer">
+
+        <!-- Toggle Entrega / Retirada -->
+        <div class="lc-delivery-toggle">
+          <label>
+            <input type="radio" name="delivery-option" value="delivery" checked>
+            <span class="delivery-pill pill-active">🛵 Entrega</span>
+          </label>
+          <label>
+            <input type="radio" name="delivery-option" value="pickup">
+            <span class="pickup-pill pill-inactive">🏪 Retirada</span>
+          </label>
+        </div>
+
+        <!-- Campo endereço -->
+        <div id="address-container" class="addr-open">
+          <input type="text" placeholder="Seu endereço completo..." id="address" class="lc-field" />
+          <p class="lc-address-warn" id="address-warn">Digite seu endereço completo</p>
+        </div>
+
+        <!-- Observação -->
+        <div>
+          <button id="add-observation-btn" class="lc-obs-btn">+ Adicionar observação</button>
+          <div id="observation-container" class="lc-obs-container">
+            <textarea id="observation" placeholder="Ex: sem cebola, ponto da carne..."
+              class="lc-field lc-field--textarea"></textarea>
+          </div>
+        </div>
+
+        <!-- Total + Finalizar -->
+        <div class="lc-checkout-row">
+          <div>
+            <p class="lc-total__label">Total</p>
+            <p class="lc-total__value" id="cart-total">R$ 0,00</p>
+          </div>
+          <button id="checkout-btn" class="lc-checkout-btn">Finalizar via WhatsApp →</button>
+        </div>
+
+      </div>
     </div>
-  </div>
   </div>
   <!-- FIM DO MODAL CART -->
-  <!--Footer-->
-  <footer
-    style="position:fixed;bottom:0;width:100%;z-index:999;padding:12px 20px;background:#111;border-top:1px solid rgba(255,255,255,0.07);box-shadow:0 -8px 32px rgba(0,0,0,0.4);">
-    <button id="cart-btn"
-      style="width:100%;max-width:600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#facc15,#f97316);border:none;border-radius:14px;padding:14px 20px;cursor:pointer;transition:.2s;"
-     >
-      <div style="display:flex;align-items:center;gap:8px;">
+
+  <!-- Voltar ao topo -->
+  <button id="back-to-top" aria-label="Voltar ao topo">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+      stroke-linecap="round">
+      <path d="M18 15l-6-6-6 6" />
+    </svg>
+  </button>
+
+  <!-- Footer -->
+  <footer id="footer-bar" class="lc-footer">
+    <div class="lc-footer__fade"></div>
+    <button id="cart-btn">
+      <div class="lc-cart-btn__left">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2"
           stroke-linecap="round">
           <circle cx="9" cy="21" r="1" />
           <circle cx="20" cy="21" r="1" />
           <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
         </svg>
-        <span style="font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:700;color:#111;">Meu Carrinho</span>
+        <span class="lc-cart-btn__label">Meu Carrinho</span>
       </div>
-      <span
-        style="font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:700;color:#111;background:rgba(0,0,0,0.15);padding:4px 10px;border-radius:9999px;">
-        <span id="cart-count">0</span> iten(s)
-      </span>
+      <span class="lc-cart-btn__badge"><span id="cart-count">0</span> iten(s)</span>
     </button>
   </footer>
-  <!--FIM Footer-->
+  <!-- FIM Footer -->
 
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script type="module" src="./src/js/main.js"></script>
